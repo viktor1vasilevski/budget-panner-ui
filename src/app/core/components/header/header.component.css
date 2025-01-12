@@ -1,0 +1,37 @@
+header {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+  }
+  
+  .navbar .ml-auto {
+    margin-left: auto;
+  }
+  
+  .navbar .ml-2 {
+    margin-left: 0.5rem;
+  }
+  
+  .nav-link {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .nav-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+  
+  .navbar .btn {
+    margin-left: 10px;
+  }
+  

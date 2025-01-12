@@ -1,0 +1,19 @@
+.fixed-size-table th, .fixed-size-table td {
+    word-wrap: break-word;
+    text-align: center;
+    white-space: nowrap;
+    padding: 8px;
+}
+
+.fixed-size-table th {
+    width: 150px;
+}
+
+.fixed-size-table td {
+    width: 150px;
+}
+
+.fixed-size-table td, .fixed-size-table th {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

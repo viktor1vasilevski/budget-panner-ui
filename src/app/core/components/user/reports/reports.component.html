@@ -1,0 +1,124 @@
+<div class="container mt-4">
+    <div class="p-4 bg-light border rounded shadow">
+        <h3 class="mb-4 text-primary">Transaction Report</h3>
+
+        <h4 class="text-success">Income</h4>
+        <table class="table table-bordered table-striped table-hover shadow-sm mb-4 fixed-size-table">
+            <thead class="thead-light">
+                <tr>
+                    <th>Month</th>
+                    <th>Planned Total</th>
+                    <th>Actual Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let group of groupedIncomeByMonth" class="table-primary">
+                    <td>{{ group.month }}/{{ group.year }}</td>
+                    <td>{{ calculateMonthlyTotal(group.transactions, 'Planned') | currency }}</td>
+                    <td>{{ calculateMonthlyTotal(group.transactions, 'Actual') | currency }}</td>
+                </tr>
+
+                <tr *ngFor="let group of groupedIncomeByMonth">
+                    <td colspan="6">
+                        <table class="table table-sm table-bordered mb-0 fixed-size-table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Status</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let transaction of group.transactions" class="table-secondary">
+                                    <td>{{ transaction.categoryName }}</td>
+                                    <td>{{ transaction.transactionStatus }}</td>
+                                    <td>{{ transaction.amount | currency }}</td>
+                                    <td>{{ transaction.date }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="mt-4">
+            <h4 class="text-success">Total Income</h4>
+            <div class="alert alert-info">
+                <p><strong>Planned Total: </strong>{{ totalPlannedIncome | currency }}</p>
+                <p><strong>Actual Total: </strong>{{ totalActualIncome | currency }}</p>
+            </div>
+        </div>
+
+        <h4 class="mt-4 text-danger">Expense</h4>
+        <table class="table table-bordered table-striped table-hover shadow-sm mb-4 fixed-size-table">
+            <thead class="thead-light">
+                <tr>
+                    <th>Month</th>
+                    <th>Planned Total</th>
+                    <th>Actual Total</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let group of groupedExpenseByMonth" class="table-danger">
+                    <td>{{ group.month }}/{{ group.year }}</td>
+                    <td>{{ calculateMonthlyTotal(group.transactions, 'Planned') | currency }}</td>
+                    <td>{{ calculateMonthlyTotal(group.transactions, 'Actual') | currency }}</td>
+                </tr>
+
+                <tr *ngFor="let group of groupedExpenseByMonth">
+                    <td colspan="6">
+                        <table class="table table-sm table-bordered mb-0 fixed-size-table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Status</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let transaction of group.transactions" class="table-secondary">
+                                    <td>{{ transaction.categoryName }}</td>
+                                    <td>{{ transaction.transactionStatus }}</td>
+                                    <td>{{ transaction.amount | currency }}</td>
+                                    <td>{{ transaction.date }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="mt-4">
+            <h4 class="text-danger">Total Expense</h4>
+            <div class="alert alert-warning">
+                <p><strong>Planned Total: </strong>{{ totalPlannedExpense | currency }}</p>
+                <p><strong>Actual Total: </strong>{{ totalActualExpense | currency }}</p>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <h4 class="text-primary">Monthly Planned and Actual Balances</h4>
+            <table class="table table-bordered table-striped table-hover shadow-sm fixed-size-table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Month</th>
+                        <th>Planned Balance</th>
+                        <th>Actual Balance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let group of groupedIncomeByMonth">
+                        <td>{{ group.month }}/{{ group.year }}</td>
+                        <td>{{ monthlyBalances[group.month + '-' + group.year].planned | currency }}</td>
+                        <td>{{ monthlyBalances[group.month + '-' + group.year].actual | currency }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

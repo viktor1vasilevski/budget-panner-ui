@@ -1,0 +1,37 @@
+<div class="container mt-4">
+    <div class="p-4 bg-light border rounded shadow">
+        <h3 class="mb-4 text-primary">Edit Category</h3>
+        <form [formGroup]="editCategoryForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="editCategory">Name</label>
+                <input type="text" id="editCategory" class="form-control" formControlName="name"
+                    [(ngModel)]="category.name" />
+                <div *ngIf="editCategoryForm.get('name')?.invalid && editCategoryForm.get('name')?.touched"
+                    class="text-danger">
+                    <small *ngIf="editCategoryForm.get('name')?.errors?.['required']">Category name is required.</small>
+                    <small *ngIf="editCategoryForm.get('name')?.errors?.['minlength']">Category name must be at least 3
+                        characters.</small>
+                </div>
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="type">Type</label>
+                <select id="type" class="form-control" formControlName="type">
+                    <option value="" disabled>Select Type</option>
+                    <option value="1" [selected]="category.type == '1'">Expense</option>
+                    <option value="2" [selected]="category.type == '2'">Income</option>
+                </select>
+                <div *ngIf="editCategoryForm.get('type')?.invalid && editCategoryForm.get('type')?.touched"
+                    class="text-danger">
+                    <small *ngIf="editCategoryForm.get('type')?.errors?.['required']">Type of category is
+                        required.</small>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <button type="submit" class="btn btn-success m-2" [disabled]="editCategoryForm.invalid">Save</button>
+                <button routerLink="/user/categories" class="btn btn-secondary m-2">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="container mt-4">
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>City</th>
+                <th>Job</th>
+                <th>Email</th>
+                <th>Years in Current Job</th>
+                <th>Total Years of Experience</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.city }}</td>
+                <td>{{ user.job }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.yearsInCurrentJob }}</td>
+                <td>{{ user.totalYearsOfExperience }}</td>
+                <td>
+                    <span class="badge" [ngClass]="{'badge-success': user.isActive, 'badge-danger': !user.isActive}">
+                        {{ user.isActive ? 'Active' : 'Inactive' }}
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,41 @@
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="login-container p-4 border rounded shadow-sm">
+        <h2 class="text-center">Login</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" class="form-control" formControlName="username" />
+                <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched"
+                    class="text-danger">
+                    <small *ngIf="loginForm.get('username')?.errors?.['required']">Username is
+                        required.</small>
+                    <small *ngIf="loginForm.get('username')?.errors?.['minlength']">Username must be at least
+                        5 characters.</small>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form-control" formControlName="password" />
+                <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+                    class="text-danger">
+                    <small *ngIf="loginForm.get('password')?.errors?.['required']">Password is
+                        required.</small>
+                    <small *ngIf="loginForm.get('password')?.errors?.['pattern']">
+                        Password must be at least 4 characters long and include an uppercase letter, lowercase
+                        letter, number, and special character.
+                    </small>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">
+                Login
+            </button>
+        </form>
+        <div class="text-center mt-3">
+            <p>Don't have an account?
+                <a (click)="register()" class="text-primary">Register</a>
+            </p>
+        </div>
+    </div>
+</div>
