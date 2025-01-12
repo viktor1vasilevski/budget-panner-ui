@@ -13,6 +13,8 @@ import { GroupedTransaction, Transaction } from './interfaces';
 })
 export class ReportsComponent implements OnInit {
 
+  // add comment
+
   data: any[] = [];
   incomeTransactions: Transaction[] = [];
   expenseTransactions: Transaction[] = [];
